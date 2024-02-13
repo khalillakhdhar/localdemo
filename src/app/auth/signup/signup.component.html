@@ -1,0 +1,48 @@
+
+<h2>Signup</h2>
+<form #signupForm="ngForm" (submit)="signup()">
+  <div class="form-group">
+    <label for="nom">Nom</label>
+    <input type="text" class="form-control" id="nom" name="nom" #nom="ngModel" [(ngModel)]="user.nom" required>
+    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="text-danger">
+      <div *ngIf="nom.errors?.['required']">Nom est requis.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="prenom">Prénom</label>
+    <input type="text" class="form-control" id="prenom" #prenom="ngModel"  name="prenom" [(ngModel)]="user.prenom" required>
+    <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="text-danger">
+      <div *ngIf="prenom.errors?.['required']">Prénom est requis.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" #email="ngModel"  name="email" [(ngModel)]="user.email" required email>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+      <div *ngIf="email.errors?.['required']">Email est requis.</div>
+      <div *ngIf="email.errors?.['email']">Email invalide.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Mot de passe</label>
+    <input type="password" class="form-control" #password="ngModel" id="password" name="password" [(ngModel)]="user.password" required minlength="6">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+      <div *ngIf="password.errors?.['required']">Mot de passe est requis.</div>
+      <div *ngIf="password.errors?.['minlength']">Mot de passe doit contenir au moins 6 caractères.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="telephone">Téléphone</label>
+    <input type="text" class="form-control" id="telephone" #telephone="ngModel" name="telephone" [(ngModel)]="user.telephone" required pattern="[0-9+ ]{8,}">
+    <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="text-danger">
+      <div *ngIf="telephone.errors?.['required']">Téléphone est requis.</div>
+      <div *ngIf="telephone.errors?.['pattern']">Téléphone doit contenir 8 chiffres ou plus.</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">S'inscrire</button>
+</form>
